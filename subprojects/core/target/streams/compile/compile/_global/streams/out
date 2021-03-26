@@ -1,0 +1,9 @@
+[0m[[0m[0mdebug[0m] [0m[0mAcquiring lock on file /home/erigaud/IdeaProjects/scala-basic-learning/project/target/.sbt-compilation-infos/core-compile/.sbt-idea-lock ...[0m
+[0m[[0m[33mwarn[0m] [0m[0m/home/erigaud/IdeaProjects/scala-basic-learning/subprojects/core/src/main/scala/lessons/lesson_2/Lesson2.scala:38:5: a pure expression does nothing in statement position; multiline expressions might require enclosing parentheses[0m
+[0m[[0m[33mwarn[0m] [0m[0m    {[0m
+[0m[[0m[33mwarn[0m] [0m[0m    ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/home/erigaud/IdeaProjects/scala-basic-learning/subprojects/core/src/main/scala/lessons/lesson_4/TestClass.scala:18:3: a pure expression does nothing in statement position; multiline expressions may require enclosing parentheses[0m
+[0m[[0m[33mwarn[0m] [0m[0m  level[0m
+[0m[[0m[33mwarn[0m] [0m[0m  ^[0m
+[0m[[0m[33mwarn[0m] [0m[0mtwo warnings found[0m
+[0m[[0m[0mdebug[0m] [0m[0mReleasing lock on file /home/erigaud/IdeaProjects/scala-basic-learning/project/target/.sbt-compilation-infos/core-compile/.sbt-idea-lock.[0m

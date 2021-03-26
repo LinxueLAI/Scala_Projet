@@ -1,0 +1,16 @@
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(compile, None, None)[0m
+[0m[[0m[0mdebug[0m] [0m[0mEvaluating tasks: core / Compile / compile, Compile / compile[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: Signal, check cycles: false, forcegc: true[0m
+[0m[[0m[0minfo[0m] [0m[0mcompiling 33 Scala sources to /home/erigaud/IdeaProjects/scala-basic-learning/subprojects/core/target/scala-2.12/classes ...[0m
+[0m[[0m[0minfo[0m] [0m[0mNon-compiled module 'compiler-bridge_2.12' for Scala 2.12.4. Compiling...[0m
+[0m[[0m[0minfo[0m] [0m[0m  Compilation completed in 8.8s.[0m
+[0m[[0m[33mwarn[0m] [0m[0m/home/erigaud/IdeaProjects/scala-basic-learning/subprojects/core/src/main/scala/lessons/lesson_2/Lesson2.scala:38:5: a pure expression does nothing in statement position; multiline expressions might require enclosing parentheses[0m
+[0m[[0m[33mwarn[0m] [0m[0m    {[0m
+[0m[[0m[33mwarn[0m] [0m[0m    ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/home/erigaud/IdeaProjects/scala-basic-learning/subprojects/core/src/main/scala/lessons/lesson_4/TestClass.scala:18:3: a pure expression does nothing in statement position; multiline expressions may require enclosing parentheses[0m
+[0m[[0m[33mwarn[0m] [0m[0m  level[0m
+[0m[[0m[33mwarn[0m] [0m[0m  ^[0m
+[0m[[0m[33mwarn[0m] [0m[0mtwo warnings found[0m
+[0m[[0m[0minfo[0m] [0m[0mdone compiling[0m
+[0m[[0m[32msuccess[0m] [0m[0mTotal time: 18 s, completed 12 mars 2021 à 14:37:10[0m
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(idea-shell, None, None)[0m
