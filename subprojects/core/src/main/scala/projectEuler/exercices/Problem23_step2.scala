@@ -1,5 +1,7 @@
 package projectEuler.exercices
 
+import projectEuler.exercices.ProjetEulerUtils.sumOfDivisors
+
 import java.util.Date
 import scala.collection.mutable.ArrayBuffer
 
@@ -13,19 +15,46 @@ object Problem23_step2 {
         Find the sum of all the positive integers which cannot be written as the sum of two abundant numbers.
   */
   def main(args: Array[String]): Unit = {
+    /*
+      - Second step :
+      A perfect number : the sum of its proper divisors is exactly equal to the number. ex: 1 + 2 + 4 + 7 + 14 = 28 ;
+      A deficient number n :  sum of its proper divisors < n ;
+      A abundant number n :  n < sum of its proper divisors.
+
+      If a number x > 28123, it can be written as the sum of two abundant numbers.
+      Q : Find the sum of all the positive integers which cannot be written as the sum of two abundant numbers.
+
+      Consider only the interval from 0 to 28123, if we can find all the positive integers that can be written as sum of two abundant numbers,
+      then we can know the set which contains all the positive integers which cannot be written as the sum of two abundant numbers.(the two sets are complementary to each other)
+
+      Result = 4179871
+      Time used  = 2913
+    */
     val startTime = new Date().getTime
-    val as = findAbundantNum
-    val sumOfTwoAbundantNbs = as.view.flatMap { a =>
-      as.takeWhile(_ <= (28123 - a)).map(_ + a)
+    val seqAbNum = findAbundantNum
+    val sumOfTwoAbundantNbs = seqAbNum.flatMap { abNum =>
+      seqAbNum.takeWhile(_ <= (28123 - abNum)).map(_ + abNum)
     }
-//    println(s"nb of all the possibilities = ${(1 to 28123 diff sumOfTwoAbundantNbs).size}")
     println(s"result = ${(1 to 28123 diff sumOfTwoAbundantNbs).sum}")
     val endTime = new Date().getTime
-    println("time used  = "+(endTime - startTime))
+    println("time used  = " + (endTime - startTime))
 
   }
+
   def findAbundantNum: Seq[Int] = {
-    (0 to 28123).map(n => (1 to (n / 2)).filter(n % _ == 0).sum)
-      .zipWithIndex.filter(p => p._1 > p._2).map(_._2)
+    val seqAbundantNum = ArrayBuffer.empty[Int]
+    (1 to 28123).foreach { nb =>
+      if (isAbundantNum(nb))
+        seqAbundantNum.append(nb)
+    }
+    seqAbundantNum
   }
+
+  def isAbundantNum(i: Int): Boolean = {
+    sumOfDivisors(i) > i
+  }
+
+//  def sumOfDivisors(n: Int): Int = {
+//    (1 to (n / 2)).filter(elm => n % elm == 0).sum
+//  }
 }

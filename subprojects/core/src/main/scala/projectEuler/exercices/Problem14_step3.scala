@@ -20,7 +20,15 @@ object Problem14_step3 {
           NOTE: Once the chain starts the terms are allowed to go above one million.
     */
   def main(args: Array[String]): Unit = {
-    // To be improved :Time used : 421
+    /*
+    - Third step :
+    Traverse all the triangle numbers from 1 to one million, and calculate the length of each chain produced by iterative rules :
+                                n → n/2 (n is even)
+                                n → 3n + 1 (n is odd)
+    Add the use of parallelism.
+    Advantage : algorithm is simple and the time complexity is reduced.
+                   Time used : 421
+     */
     val startTime = new Date().getTime
 
     var counter: Int = 1
@@ -28,8 +36,8 @@ object Problem14_step3 {
     val batchSize = 200000
     var index = 0
     var result = 0
-    do{
-      val subTask = index*batchSize+1 to (index+1)*batchSize
+    do {
+      val subTask = index * batchSize + 1 to (index + 1) * batchSize
       val par_seq = subTask
         .par
 
@@ -39,31 +47,34 @@ object Problem14_step3 {
         )
       }
       par_seq
-        .foreach{
-        counter=>
-          val length = produceChain(counter)
-          if(length>max){
-            max = length
-            result  = counter
-          }
-      }
-      counter = subTask.max+1
-      index+=1
-    }while(counter<1000000)
+        .foreach {
+          counter =>
+            val length = produceChain(counter)
+            max.synchronized {
+              if (length > max) {
+                max = length
+                result = counter
+              }
+            }
+        }
+      counter = subTask.max + 1
+      index += 1
+    } while (counter < 1000000)
     println(s"result = ${result}")
     val endTime = new Date().getTime
-    println(s"Time used = ${endTime-startTime}")
+    println(s"Time used = ${endTime - startTime}")
 
   }
-  def produceChain(n:Int):Int ={
+
+  def produceChain(n: Int): Int = {
     var count = 1
     var tmp: Long = n.toLong
-    while (tmp>1){
-      if(tmp%2==0)
-        tmp = tmp/2
+    while (tmp > 1) {
+      if (tmp % 2 == 0)
+        tmp = tmp / 2
       else
-        tmp = tmp*3+1
-      count+=1
+        tmp = tmp * 3 + 1
+      count += 1
     }
     count
   }

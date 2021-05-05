@@ -1,5 +1,9 @@
 package projectEuler.exercices
 
+import projectEuler.exercices.ProjetEulerUtils.factorial
+
+import java.util.Date
+
 object Problem20 {
   /*
     Problem 20 : Factorial digit sum
@@ -8,15 +12,16 @@ object Problem20 {
         For example, 10! = 10 × 9 × ... × 3 × 2 × 1 = 3628800,
         and the sum of the digits in the number 10! is 3 + 6 + 2 + 8 + 8 + 0 + 0 = 27.
         Find the sum of the digits in the number 100!
+
+        Result = 648
+        Time used = 314
   */
   def main(args: Array[String]): Unit = {
+    val startTime = new Date().getTime
 
     println(factorial(100).toString().map(_.asDigit).sum)
-
-    def factorial(n: BigInt): BigInt = {
-      if (n == 1)  n
-      else  n*factorial(n - 1)
-    }
+    val endTime = new Date().getTime
+    println(s"Time used = ${endTime - startTime}")
   }
 
 }

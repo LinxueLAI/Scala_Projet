@@ -1,6 +1,8 @@
 package projectEuler.exercices
 
 
+import projectEuler.exercices.ProjetEulerUtils.compositePrimeFactors
+
 import java.util.Date
 import scala.collection.mutable.ArrayBuffer
 import scala.collection.parallel.ForkJoinTaskSupport
@@ -19,7 +21,6 @@ object Problem12_step4_parallel {
 
         result : 76576500
         time used = 951
-
    */
 
     val startTime= new Date().getTime
@@ -57,23 +58,5 @@ object Problem12_step4_parallel {
 
     val endTime= new Date().getTime
     println(s"time used = ${endTime - startTime}")
-  }
-  def compositePrimeFactors(n:Int):ArrayBuffer[Int] = {
-    var seqPrimeFactors = ArrayBuffer(1)
-    var factor = 2
-    var res = n
-    while(res%factor==0) {
-      seqPrimeFactors.append(2)
-      res /= 2
-    }
-    factor = 3
-    while (res>1){
-      while (res%factor==0){
-        seqPrimeFactors.append(factor)
-        res /= factor
-      }
-      factor+=2
-    }
-    seqPrimeFactors
   }
 }

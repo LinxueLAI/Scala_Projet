@@ -1,5 +1,7 @@
 package projectEuler.exercices
 
+import projectEuler.exercices.ProjetEulerUtils.compositePrimeFactors
+
 import java.util.Date
 
 object Problem12_step2 {
@@ -17,43 +19,29 @@ object Problem12_step2 {
     Advantage : time complexity is reduced.
 
     result : 76576500
-    time used = 1065
+    time used = 927
 
      */
-    val startTime= new Date().getTime
+    val startTime = new Date().getTime
     var nth = 1
     var triNumber = 2
     var nbOfFactors = 0
-    do{
-      triNumber = nth*(nth+1)/2
+    do {
+      triNumber = nth * (nth + 1) / 2
       val seq = compositePrimeFactors(triNumber)
-      nbOfFactors = (1 to seq.size).flatMap(seq.combinations).map(_.product).distinct.size
-      nth+=1
+      nbOfFactors = (1 to seq.size)
+        .flatMap(seq.combinations)
+        .map(_.product)
+        .distinct
+        .size
+      nth += 1
 
-    }while(nbOfFactors <500)
+    } while (nbOfFactors < 500)
 
     println(s"result : ${triNumber}")
-    val endTime= new Date().getTime
+
+    val endTime = new Date().getTime
     println(s"time used = ${endTime - startTime}")
 
-  }
-
-  def compositePrimeFactors(n:Int):Seq[Int] = {
-    var seqPrimeFactors = Seq(1)
-    var factor = 2
-    var res = n
-    while(res%factor==0) {
-      seqPrimeFactors = seqPrimeFactors:+2
-      res /= 2
-    }
-    factor = 3
-    while (res>1){
-      while (res%factor==0){
-        seqPrimeFactors = seqPrimeFactors:+factor
-        res /= factor
-      }
-      factor+=2
-    }
-    seqPrimeFactors
   }
 }

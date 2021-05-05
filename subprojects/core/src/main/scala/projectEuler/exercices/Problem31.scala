@@ -1,5 +1,7 @@
 package projectEuler.exercices
 
+import java.util.Date
+
 object Problem31 {
   /*
     Problem 31 : Coin sums
@@ -13,10 +15,18 @@ object Problem31 {
             1×£1 + 1×50p + 2×20p + 1×5p + 1×2p + 3×1p
 
         How many different ways can £2 be made using any number of coins?
+
+        73682
+        time used  = 225
+
   */
   def main(args: Array[String]): Unit = {
+    val startTime = new Date().getTime
     val r = f(List(1, 2, 5, 10, 20, 50, 100, 200), 200)
     println(r)
+
+    val endTime = new Date().getTime
+    println("time used  = " + (endTime - startTime))
   }
 
 
@@ -25,6 +35,4 @@ object Problem31 {
       if (premier_element > n) 0 else if (n == premier_element) 1 else f(ms, n - premier_element) + f(tail, n)
     case _ => 0
   }
-
-
 }

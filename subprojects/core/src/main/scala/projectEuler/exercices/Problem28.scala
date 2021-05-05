@@ -1,5 +1,7 @@
 package projectEuler.exercices
 
+import java.util.Date
+
 object Problem28 {
   /*
     Problem 28 : Number spiral diagonals
@@ -14,23 +16,29 @@ object Problem28 {
 
           It can be verified that the sum of the numbers on the diagonals is 101.
           What is the sum of the numbers on the diagonals in a 1001 by 1001 spiral formed in the same way?
+
+          669171001
+          time used  = 319
   */
   def main(args: Array[String]): Unit = {
+    val startTime = new Date().getTime
 
-    val seq = Seq(2,4,6,8)
+    val seq = Seq(2, 4, 6, 8)
     var sum = 1
-    (0 until 2).foreach(elm=> sum+=nthLayerSum(seq,elm))
-    println(s"sum=${sum}")
+    (0 until 2).foreach(elm => sum += nthLayerSum(seq, elm))
     var result = 1
-    (0 until 1001/2).foreach(elm=> result+=nthLayerSum(seq,elm))
+    (0 until 1001 / 2).foreach(elm => result += nthLayerSum(seq, elm))
     println(result)
+
+    val endTime = new Date().getTime
+    println("time used  = " + (endTime - startTime))
   }
 
-  def nthLayerSum(seq: Seq[Int],n:Int): Int={
+  def nthLayerSum(seq: Seq[Int], n: Int): Int = {
 
     if (n == 0) seq.map(_.+(1)).sum
     else {
-      seq.sum+nthLayerSum(seq = seq.map(_.+(8)),n-1)
+      seq.sum + nthLayerSum(seq = seq.map(_.+(8)), n - 1)
     }
   }
 

@@ -22,19 +22,17 @@ object Problem12_step3 {
 
     REMARK : the use of ArrayBuffer, List AND Sequence
 
-
      */
     val startTime = new Date().getTime
     var nth = 1
     var triNumber = 2
     var nbOfFactors = 0
-    do{
-
-      triNumber = nth*(nth+1)/2
+    do {
+      triNumber = nth * (nth + 1) / 2
       val seqFactors = findAllPrimeFactors(triNumber)
       nbOfFactors = (0 to seqFactors.size).flatMap(seqFactors.combinations).map(_.product).distinct.size
-      nth+=1
-    }while(nbOfFactors<500)
+      nth += 1
+    } while (nbOfFactors < 500)
 
     println(s"result = ${triNumber}")
     val endTime = new Date().getTime
@@ -44,26 +42,26 @@ object Problem12_step3 {
 
   val primeNumbers: ArrayBuffer[Int] = ArrayBuffer(2)
 
-  def findAllPrimeFactors(n :Int):ArrayBuffer[Int]={
+  def findAllPrimeFactors(n: Int): ArrayBuffer[Int] = {
     var resNumber = n
     var factor = 2
     val seqFactors = ArrayBuffer(1)
-    primeNumbers.indices.foreach{ nth =>
+    primeNumbers.indices.foreach { nth =>
       factor = primeNumbers(nth)
-      while(resNumber%factor==0){
-        resNumber/=factor
+      while (resNumber % factor == 0) {
+        resNumber /= factor
         seqFactors.append(factor)
       }
     }
-    factor = if (primeNumbers.size==1) 3 else factor+2
-    while (resNumber>1){
-      if(resNumber%factor==0)
+    factor = if (primeNumbers.size == 1) 3 else factor + 2
+    while (resNumber > 1) {
+      if (resNumber % factor == 0)
         primeNumbers.append(factor)
-      while (resNumber%factor==0){
+      while (resNumber % factor == 0) {
         seqFactors.append(factor)
-        resNumber/=factor
+        resNumber /= factor
       }
-      factor+=2
+      factor += 2
     }
     seqFactors
   }

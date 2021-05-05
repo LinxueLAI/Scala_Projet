@@ -1,5 +1,7 @@
 package projectEuler.exercices
 
+import projectEuler.exercices.ProjetEulerUtils.isPrime
+
 import java.util.Date
 import scala.annotation.tailrec
 import scala.collection.mutable
@@ -36,10 +38,13 @@ object Problem12_step5_parallel {
       val maxNth = subTask.max
       val maxTriNumber = (maxNth + 1) * maxNth / 2
 
-//      save all the prime numbers which are smaller than maxTriNumber
+      //      save all the prime numbers which are smaller than maxTriNumber
       val primeNumbers = (primeNumberBuffer.max to Math.sqrt(maxTriNumber).toInt)
         .par
         .filter{i=> isPrime(i) }
+
+      primeNumberBuffer.append(primeNumbers.toList.sorted:_*)// insert each element of primeNumbers to primeNumberBuffer
+
 
       val par_seq = subTask
         .par
@@ -50,9 +55,8 @@ object Problem12_step5_parallel {
         )
       }
 
-      primeNumberBuffer.append(primeNumbers.toList.sorted:_*)// insert each element of primeNumbers to primeNumberBuffer
 
-//      println(s"prime numbers Sequence  = ${primeNumbers}")
+      //      println(s"prime numbers Sequence  = ${primeNumbers}")
       par_seq
         .foreach{ nth =>
           val triNumber = (nth + 1) * nth / 2
@@ -74,14 +78,6 @@ object Problem12_step5_parallel {
 
     val endTime = new Date().getTime
     println(s"Time used = ${endTime-startTime}")
-  }
-
-  def isPrime(n: Int) :Boolean={
-    val i = 2 to Math.sqrt(n).toInt
-    i.find{k => n%k==0 &&k!=n}match {
-      case Some(_) =>false
-      case None =>true
-    }
   }
 
   def findPrimeFactor(i: Int):Seq[Int]= {

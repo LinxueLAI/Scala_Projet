@@ -23,33 +23,34 @@ object Problem14 {
     var counter: Int = 1
     var max = 1
     var cpt = 1
-    while (counter<1000000){
+    while (counter < 1000000) {
       val longer = produceChain(counter).size
-      if(longer>max){
+      if (longer > max) {
         max = longer
         cpt = counter
         println(s"counter = ${counter}, max = ${max}")
       }
-      counter+=1
+      counter += 1
     }
     println(cpt)
     println(produceChain(13).size)
 
     val endTime = new Date().getTime
-    println(s"Time used = ${endTime-startTime}")
+    println(s"Time used = ${endTime - startTime}")
 
   }
-  def produceChain(n:Int):Seq[Long] ={
+
+  def produceChain(n: Int): Seq[Long] = {
     var seq = Seq.empty[Long]
     var tmp: Long = n.toLong
-    while (tmp>1){
-      if(tmp%2==0)
-        tmp = tmp/2
+    while (tmp > 1) {
+      if (tmp % 2 == 0)
+        tmp = tmp / 2
       else
-        tmp = tmp*3+1
-      seq = seq:+ tmp
+        tmp = tmp * 3 + 1
+      seq = seq :+ tmp
     }
-    seq = seq:+1L
+    seq = seq :+ 1L
     seq
   }
 }
